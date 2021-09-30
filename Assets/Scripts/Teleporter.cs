@@ -12,9 +12,15 @@ public class Teleporter : MonoBehaviour
     {
         var player = GameObject.Find("Player");
         _controller = player.GetComponent<CharacterController>();
-        _controller.enabled = false;
-        player.transform.position = target.position;
-        _controller.enabled = true;
+
+        if (other == _controller.GetComponent<Collider>())
+        {
+            _controller.enabled = false;
+            player.transform.position = target.position;
+            _controller.enabled = true;
+
+        }
+
 
     }
 }
