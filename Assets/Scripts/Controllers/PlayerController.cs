@@ -32,10 +32,15 @@ public class PlayerController : MonoBehaviour
     {
         takeKey();
         sprint();
+        
+
+
+
+    }
+
+    void LateUpdate()
+    {
         movePlayer();
-
-
-
     }
         
 
