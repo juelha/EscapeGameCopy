@@ -10,18 +10,26 @@ public class doorAni : MonoBehaviour
 {
     Animator m_Animator;
 
+    private PadlockController padlockInst;
+
     void Start()
     {
         //Get the Animator attached to the GameObject you are intending to animate.
     //    m_Animator = gameObject.GetComponent<Animator>();
         m_Animator = GetComponent<Animator>();
+        padlockInst = PadlockController.Instance;
+
     }
 
     void Update()
     {
-       
 
-        if (Input.GetKey(KeyCode.DownArrow))
+        if (padlockInst.unlocked)
+        {
+            Debug.Log("tru");
+            m_Animator.Play("doorslide");
+        }
+        else if (Input.GetKey(KeyCode.DownArrow))
         {
 
             m_Animator.Play("dooropen");
