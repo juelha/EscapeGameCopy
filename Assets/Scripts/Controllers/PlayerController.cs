@@ -32,7 +32,6 @@ public class PlayerController : MonoBehaviour
         takeKey();
         sprint();
         unlockDoor();
-
     }
 
     // using LateUpdate to make sure movePlayer() is called last
@@ -52,13 +51,11 @@ public class PlayerController : MonoBehaviour
     private void takeKey()
     {
         var dir = (keyInst.transform.position - player.position);
-
-     //  Debug.DrawRay(player.position, -dir);
-
+        
+        // if in right direction to the key and E pressed, set taken to true
         if ((Input.GetKeyDown(KeyCode.E)) && (dir.magnitude<=2.5))
         {
             keyInst.taken = true; // make key glow 
-
         }
     }
 
@@ -66,8 +63,7 @@ public class PlayerController : MonoBehaviour
     {
         var dir = (padlockInst.transform.position - keyInst.transform.position);
 
-      // Debug.DrawRay(padlockInst.transform.position, -dir);
-
+        // sets the padlock to unlocked and the key to used
         if ((Input.GetKeyDown(KeyCode.E)) && (dir.magnitude <= 2.5))
         {
             padlockInst.unlocked = true;
@@ -75,8 +71,8 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void movePlayer(){
-    
+    private void movePlayer()
+    {
         float horizontalMov = Input.GetAxis("Horizontal") * movSpeed; //x
         float verticalMov = Input.GetAxis("Vertical") * movSpeed; //z
 
@@ -93,5 +89,4 @@ public class PlayerController : MonoBehaviour
             _charController.Move(new Vector3(0, velocity, 0));
         }
     }
-
 }

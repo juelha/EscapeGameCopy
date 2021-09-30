@@ -8,6 +8,7 @@ public class MainMenu : MonoBehaviour
 {
     public void PlayGame()
     {
+        // load the main game scene
         SceneManager.LoadScene("Escape Room");
     }
 

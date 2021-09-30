@@ -1,7 +1,7 @@
 using UnityEngine;
 
 public class CloseWindow : MonoBehaviour {
-
+    
     public Animator anim;
 
     // Make it the actual animator
@@ -13,8 +13,8 @@ public class CloseWindow : MonoBehaviour {
     // Windows are supposed to close with space key
     void Update()
     {
-        if (Input.GetKeyDown("space")) {
-
+        if (Input.GetKeyDown("space"))
+        {
             anim.Play("close");
         }       
     }

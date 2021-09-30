@@ -23,14 +23,12 @@ public class DoorTrigger : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-            
+        // check the distance to the door
         var dist = Vector3.Distance(player.position,door.position);
 
+        // if the distance is below the threshold, open door
         if (dist <= threshhold){
-                
             door_active = true;
-            Debug.Log("true");
-
         }
 
         if (door_active){

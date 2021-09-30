@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using Vector3 = UnityEngine.Vector3;
 
-public class EnemyMovement : MonoBehaviour
+public class EnemyController : MonoBehaviour
 {
     public NavMeshAgent agent;  //is attached to a mobile character in the game to allow it to navigate the Scene
     public Transform player;
@@ -36,13 +36,6 @@ public class EnemyMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-
-        Debug.Log("SDFGDS");
-        Debug.Log(player.position);
-        Debug.Log("enemy");
-        Debug.Log(transform.position);
-
         //Check for sight and attack range
         inSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
         inAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
@@ -92,8 +85,10 @@ public class EnemyMovement : MonoBehaviour
         agent.SetDestination(transform.position);
         transform.LookAt(player);
         
+        // play enemy attack sound
         SoundManager.PlaySound("enemyAttack");
 
+        // if not already attacked, attack and reset the attack timer
         if (!attacked)
         {
             attacked = true;
