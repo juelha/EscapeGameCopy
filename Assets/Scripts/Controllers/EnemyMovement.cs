@@ -91,6 +91,8 @@ public class EnemyMovement : MonoBehaviour
         // agent shouldn't randomly move away
         agent.SetDestination(transform.position);
         transform.LookAt(player);
+        
+        SoundManagerScript.PlaySound("enemyAttack");
 
         if (!attacked)
         {

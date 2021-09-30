@@ -4,17 +4,17 @@ using UnityEngine;
 
 public class SoundManagerScript : MonoBehaviour
 {
-        public static AudioClip bgMusic;
+        public static AudioClip bgMusic, enemyAttack;
 
         private static AudioSource audioSrc;
 
         void Start()
         {
             bgMusic = Resources.Load<AudioClip>("Track E");
-
+            enemyAttack = Resources.Load<AudioClip>("horror");
             audioSrc = GetComponent<AudioSource>();
 
-            PlaySound();
+            PlaySound("bg");
         }
 
         // Update is called once per frame
@@ -23,9 +23,18 @@ public class SoundManagerScript : MonoBehaviour
 
         }
 
-        public static void PlaySound()
+        public static void PlaySound(string clip)
         {
-            audioSrc.PlayOneShot(bgMusic, 0.5f);
+            switch (clip)
+            {
+                case "bg":
+                    audioSrc.PlayOneShot(bgMusic, 0.5f);
+                    
+                    break;
+                case "enemyAttack":
+                    audioSrc.PlayOneShot(enemyAttack, 1f);
+                    break;
+            }
         }
 }
 
