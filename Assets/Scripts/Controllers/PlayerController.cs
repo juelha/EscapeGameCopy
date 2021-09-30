@@ -75,8 +75,9 @@ public class PlayerController : MonoBehaviour
 
         if ((Input.GetKeyDown(KeyCode.E)) && (dir.magnitude <= 2.5))
         {
-            // keyInst.unlocked = true;
-            padlockInst.unlocked = true; 
+             
+            padlockInst.unlocked = true;
+            keyInst.used = true;
         }
     }
 

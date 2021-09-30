@@ -8,6 +8,7 @@ public class KeyController : MonoBehaviour
     public static KeyController Instance; 
 
     public bool taken { get; set; }
+    public bool used { get; set; }
     MeshRenderer mr;
 
     void Awake()
@@ -16,6 +17,7 @@ public class KeyController : MonoBehaviour
 
         mr = GetComponent<MeshRenderer>();
         taken = false;
+        used = false;
     }
 
     // Start is called before the first frame update
@@ -54,6 +56,17 @@ public class KeyController : MonoBehaviour
 
          
 
+        }
+
+
+
+        if (used)
+        {
+            taken = false;
+            transform.parent = null;
+            transform.SetParent(null);
+
+            transform.position += Vector3.down * Time.deltaTime;
         }
     }
 }

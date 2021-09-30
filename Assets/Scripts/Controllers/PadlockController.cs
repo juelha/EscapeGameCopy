@@ -45,14 +45,7 @@ public class PadlockController : MonoBehaviour
             //  Destroy(Instance, Time.deltaTime);
             // var corner = new Vector3(.1f, .1f, 0f); 
             var corner = new Vector3(0, 0, 0);
-            transform.position += Camera.main.ScreenToViewportPoint(corner) * 20f;
-
-            transform.position = Camera.main.transform.position + Camera.main.transform.forward;
-
-            Transform target = Camera.main.transform;
-            transform.parent = target;
-
-
+            transform.position += Vector3.down * Time.deltaTime;
 
         }
     }
