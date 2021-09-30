@@ -10,10 +10,11 @@ public class PlayerController : MonoBehaviour
     public float gravity = 9.8f;
     public float velocity = 0f;
 
-    // var 
+    // variables for interacting with obj in env
+    
+    private Transform player; // transform of the "eyes" of the player
     private KeyController keyInst;
-    public Transform player; // transform of the "eyes" of the player
-
+    private PadlockController padlockInst; 
 
 
 
@@ -24,6 +25,8 @@ public class PlayerController : MonoBehaviour
 
         keyInst = KeyController.Instance;
 
+        padlockInst = PadlockController.Instance;
+
         _charController = GetComponent<CharacterController>();
     }
 
@@ -32,7 +35,7 @@ public class PlayerController : MonoBehaviour
     {
         takeKey();
         sprint();
-        
+        unlockDoor();
 
 
 
@@ -53,16 +56,27 @@ public class PlayerController : MonoBehaviour
 
     private void takeKey()
     {
-        var fvgbh = keyInst.transform.position;
-        var fghnj = player.position;
         var dir = (keyInst.transform.position - player.position);
 
-        Debug.DrawRay(player.position, -dir);
+       Debug.DrawRay(player.position, -dir);
 
         if ((Input.GetKeyDown(KeyCode.E)) && (dir.magnitude<=2.5))
         {
             keyInst.taken = true; // make key glow 
 
+        }
+    }
+
+    private void unlockDoor()
+    {
+        var dir = (padlockInst.transform.position - keyInst.transform.position);
+
+       Debug.DrawRay(padlockInst.transform.position, -dir);
+
+        if ((Input.GetKeyDown(KeyCode.E)) && (dir.magnitude <= 2.5))
+        {
+            // keyInst.unlocked = true;
+            padlockInst.unlocked = true; 
         }
     }
 

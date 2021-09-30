@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class KeyController : MonoBehaviour
+public class PadlockController : MonoBehaviour
 {
 
-    public static KeyController Instance; 
+    public static PadlockController Instance;
 
-    public bool taken { get; set; }
+    public bool unlocked { get; set; }
     MeshRenderer mr;
 
     void Awake()
@@ -15,7 +15,7 @@ public class KeyController : MonoBehaviour
         Instance = this;
 
         mr = GetComponent<MeshRenderer>();
-        taken = false;
+        unlocked = false;
     }
 
     // Start is called before the first frame update
@@ -29,8 +29,8 @@ public class KeyController : MonoBehaviour
     {
         Debug.Log(transform.position);
         //var dist_to_key = Vector3.Distance();
-       // if ((Input.GetKeyDown(KeyCode.E)))
-        if (taken)
+        // if ((Input.GetKeyDown(KeyCode.E)))
+        if (unlocked)
         {
 
             mr.material.EnableKeyword("_EMISSION");
@@ -43,16 +43,16 @@ public class KeyController : MonoBehaviour
 
             //debug.log("fix rotation of captured boids")
             //  Destroy(Instance, Time.deltaTime);
-           // var corner = new Vector3(.1f, .1f, 0f); 
-            var corner = new Vector3(0,0,0); 
-            transform.position += Camera.main.ScreenToViewportPoint(corner)* 20f;
+            // var corner = new Vector3(.1f, .1f, 0f); 
+            var corner = new Vector3(0, 0, 0);
+            transform.position += Camera.main.ScreenToViewportPoint(corner) * 20f;
 
-            transform.position = Camera.main.transform.position + Camera.main.transform.forward ;
+            transform.position = Camera.main.transform.position + Camera.main.transform.forward;
 
             Transform target = Camera.main.transform;
             transform.parent = target;
 
-         
+
 
         }
     }
