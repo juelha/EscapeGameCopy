@@ -5,26 +5,22 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     CharacterController _charController;
+
     // variables according to motion (movement speed of the player, falling velocity if not grounded and gravity)
     public float movSpeed = 12f;
     public float gravity = 9.8f;
     public float velocity = 0f;
 
     // variables for interacting with obj in env
-    
-    private Transform player; // transform of the "eyes" of the player
+    private Transform player; 
     private KeyController keyInst;
     private PadlockController padlockInst; 
 
-
-
-
     void Start()
     {
-        player = GameObject.Find("MainCamera").transform;  //main camera for eyes
+        player = GameObject.Find("MainCamera").transform;  // main camera for eyes
 
         keyInst = KeyController.Instance;
-
         padlockInst = PadlockController.Instance;
 
         _charController = GetComponent<CharacterController>();
@@ -37,10 +33,9 @@ public class PlayerController : MonoBehaviour
         sprint();
         unlockDoor();
 
-
-
     }
 
+    // using LateUpdate to make sure movePlayer() is called last
     void LateUpdate()
     {
         movePlayer();
@@ -58,7 +53,7 @@ public class PlayerController : MonoBehaviour
     {
         var dir = (keyInst.transform.position - player.position);
 
-       Debug.DrawRay(player.position, -dir);
+     //  Debug.DrawRay(player.position, -dir);
 
         if ((Input.GetKeyDown(KeyCode.E)) && (dir.magnitude<=2.5))
         {
@@ -71,11 +66,10 @@ public class PlayerController : MonoBehaviour
     {
         var dir = (padlockInst.transform.position - keyInst.transform.position);
 
-       Debug.DrawRay(padlockInst.transform.position, -dir);
+      // Debug.DrawRay(padlockInst.transform.position, -dir);
 
         if ((Input.GetKeyDown(KeyCode.E)) && (dir.magnitude <= 2.5))
         {
-             
             padlockInst.unlocked = true;
             keyInst.used = true;
         }
